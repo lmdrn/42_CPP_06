@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:24:52 by lmedrano          #+#    #+#             */
-/*   Updated: 2024/06/08 18:28:36 by lmedrano         ###   ########.fr       */
+/*   Updated: 2024/06/19 21:43:39 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,11 @@
 class Serializer
 {
 	private:
-	    	// Private members
-
-	public:
     		// Constructor
     		Serializer();
-
-    		// Destructor
-    		~Serializer();
-
-    		// Copy Constructor
-    		Serializer(const Serializer& copy);
-
-    		// Copy Assignment Operator
-    		Serializer& operator=(const Serializer& copy);
+	public:
+		static uintptr_t serialize(Data *ptr);
+		static Data* deserialize(uintptr_t raw);
 };
 
 #endif /* SERIALIZER_HPP */
