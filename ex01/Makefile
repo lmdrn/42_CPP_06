@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 10:48:23 by lmedrano          #+#    #+#              #
-#    Updated: 2024/05/10 13:43:51 by lmedrano         ###   ########.fr        #
+#    Updated: 2024/06/08 18:30:30 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,13 @@ ORANGE 		= \033[38;5;215m
 GREEN 		= \033[38;5;82m
 RESET 		= \033[0m
 
-SRCS 		= main.cpp Bureaucrat.cpp
+SRCS 		= main.cpp Serializer.cpp 
 
-DEPS 		= Bureaucrat.hpp
+DEPS 		= Serializer.hpp
 
 OBJS 		= ${SRCS:.cpp=.o}
 
-NAME		= bureau
+NAME		= serializer
 
 CC 			= c++
 
@@ -63,3 +63,4 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re
+

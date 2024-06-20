@@ -15,6 +15,13 @@
 
 #include <iostream>
 
+struct Data
+{
+	int		iVal;
+	float		fVal;
+	std::string	sVal;
+};
+
 class Serializer
 {
 	private:
