@@ -6,11 +6,27 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:31:53 by lmedrano          #+#    #+#             */
-/*   Updated: 2024/06/19 21:39:53 by lmedrano         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:18:51 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+size_t	ScalarConverter::strchr(const std::string& str, char c)
+{
+	size_t len = str.size();
+	for (size_t i = 0; i < len; i++)
+	{
+		if (str[i] == c)
+			return (i);
+	}
+	return (std::string::npos);
+}
+
+char	ScalarConverter::findLastChar(const std::string& str)
+{
+	return (str[str.size() - 1]);
+}
 
 void	ScalarConverter::convert(const std::string& value)
 {
@@ -32,15 +48,13 @@ void	ScalarConverter::convert(const std::string& value)
 			std::cout << "double: " << value << std::endl;
 		}
 	}
-	else if (value.find('.') != std::string::npos && value.back() == 'f')
+	else if (ScalarConverter::strchr(value, '.') != std::string::npos && ScalarConverter::findLastChar(value) == 'f')
 		convertFloat(value);
-	else if (value.find('.') != std::string::npos)
+	else if (ScalarConverter::strchr(value, '.') != std::string::npos)
 		convertDouble(value);
 	else
 		convertInt(value);
 }
-
-
 
 void	ScalarConverter::convertChar(const std::string& value)
 {
@@ -84,7 +98,6 @@ void	ScalarConverter::convertInt(const std::string& value)
 
 void ScalarConverter::convertFloat(const std::string& value)
 {
-	std::cout << "coucou" << std::endl;
 	try
 	{
 		float decimal = std::stof(value);
