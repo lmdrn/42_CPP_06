@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:31:53 by lmedrano          #+#    #+#             */
-/*   Updated: 2024/06/28 10:18:51 by lmedrano         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:52:22 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,20 @@ char	ScalarConverter::findLastChar(const std::string& str)
 	return (str[str.size() - 1]);
 }
 
+bool	ScalarConverter::isException(const std::string value)
+{
+	if (value == "-inff" || value == "+inff" || value == "nanf"
+			|| value == "-inf" || value == "+inf" || value == "nan")
+		return (true);
+	else
+		return (false);
+}
+
 void	ScalarConverter::convert(const std::string& value)
 {
 	if (value.length() == 1 && std::isprint(value[0]) && !std::isdigit(value[0]))
 		convertChar(value);
-	else if (value == "-inff" || value == "+inff" || value == "nanf"
-			|| value == "-inf" || value == "+inf" || value == "nan")
+	else if (isException(value) == true)
 	{
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
@@ -101,7 +109,7 @@ void ScalarConverter::convertFloat(const std::string& value)
 	try
 	{
 		float decimal = std::stof(value);
-		if (std::isnan(decimal) || std::isinf(decimal))
+		if (isException(value) == true)
 		{
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;

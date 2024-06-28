@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 21:44:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2024/06/19 21:44:53 by lmedrano         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:07:22 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,27 @@
 
 int main (void)
 {
-	// Create a Data object
 	Data myData;
 	myData.iVal = 42;
 	myData.fVal = 3.14f;
 	myData.sVal = "Helloooooo youuuu";
 
-	// Serialize the pointer to the Data object
 	uintptr_t serializedData = Serializer::serialize(&myData);
-
-	// Deserialize the uintptr_t back to a pointer
 	Data* deserializedData = Serializer::deserialize(serializedData);
 
-	// Check that the original pointer and the deserialized pointer are the same
-	if (deserializedData == &myData) {
-	std::cout << "Test passed: The deserialized pointer matches the original pointer." << std::endl;
-	} else {
-	std::cout << "Test failed: The deserialized pointer does not match the original pointer." << std::endl;
+	if (deserializedData == &myData)
+	{
+		std::cout << GREEN << "Test passed: The deserialized pointer matches the original pointer." << RESET << std::endl;
+	}
+	else
+	{
+		std::cout << RED << "Test failed: The deserialized pointer does not match the original pointer." << RESET << std::endl;
 	}
 
-	// Optional: Print out the values to ensure data integrity
 	std::cout << "iVal: " << deserializedData->iVal << std::endl;
 	std::cout << "fValue: " << deserializedData->fVal << std::endl;
 	std::cout << "sValue: " << deserializedData->sVal << std::endl;
 
+	system("leaks serializer");
 	return (0);
 }
